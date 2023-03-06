@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h1> Авторизация </h1>
+
+<form method="post">
+    <div> {{ form.csrf_token }}</div>
+    <p>
+        {{form.email.label}}<br>
+        {{form.email(class="form form-control", type="email")}}
+    </p>
+    <p>
+        {{form.password.label}}<br>
+        {{form.password(class="form form-control", type="password")}}
+    </p>
+    <p>
+        {{form.remember_me.label}}<br>
+        {{form.remember_me(type="checkbox")}}
+    </p>
+    <p>
+        {{form.submit(class="btn btn-primary")}}
+    </p>
+    {%if message %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+</form>
+{% endblock %}
