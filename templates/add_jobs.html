@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+  <form method="post">
+    {{ form.csrf_token }}
+    <p>
+      {{form.job.label}}
+      <br>
+      {{form.job(class="form form-control", type="text")}}
+
+    </p>
+    <p>
+      {{form.team_leader.label}}
+      <br>
+      {{form.team_leader(class="form form-control", type="text")}}
+    </p>
+    <p>
+      {{form.collaborators.label}}
+      <br>
+      {{form.collaborators(class="form form-control", type="text")}}
+    </p>
+    <p>
+      {{form.work_size.label}}
+      <br>
+      {{form.work_size(class="form form-control", type="text")}}
+    </p>
+    <p>
+      {{form.is_finished(type="checkbox")}}
+      {{form.is_finished.label}}
+    </p>
+    <p>
+      {{ form.submit(class="btn btn-primary", type="submit")}}
+    </p>
+  </form>
+{% endblock %}

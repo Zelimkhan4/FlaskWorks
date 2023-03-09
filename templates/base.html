@@ -13,7 +13,19 @@
 <header>
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">Наше приложение</a>
+    {% if not current_user.is_authenticated %}
+        <p>
+            <a class="btn btn-primary" href="login"> Login </a>
+            <a class="btn btn-success" href="register">Register</a>
+        </p>
+
+    {% else %}
+        <p>
+            <a href="logout" > {{ current_user.name }}</a>
+        </p>
+            {%endif%}
     </nav>
+
 </header>
 <!-- Begin page content -->
 <main role="main" class="container">

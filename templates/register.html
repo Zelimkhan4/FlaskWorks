@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h1> Регистрация </h1>
+
+<form method="post">
+    <div> {{ form.csrf_token }}</div>
+    <p>
+        {{form.name.label}}<br>
+        {{form.name(class="form form-control", type="text")}}
+    </p>
+    <p>
+        {{form.surname.label}}<br>
+        {{form.surname(class="form form-control", type="text")}}
+    </p>
+    <p>
+        {{form.age.label}}<br>
+        {{form.age(class="form form-control")}}
+    </p>
+    <p>
+        {{form.position.label}}<br>
+        {{form.position(class="form form-control")}}
+    </p>
+    <p>
+        {{form.speciality.label}}<br>
+        {{form.speciality(class="form form-control")}}
+    </p>
+    <p>
+        {{form.address.label}}<br>
+        {{form.address(class="form form-control")}}
+    </p>
+    <p>
+        {{form.email.label}}<br>
+        {{form.email(class="form form-control", type="email")}}
+    </p>
+    <p>
+        {{form.password.label}}<br>
+        {{form.password(class="form form-control", type="password")}}
+    </p>
+    <p>
+        {{form.submit(class="btn btn-primary")}}
+    </p>
+    {%if message %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+</form>
+{% endblock %}
