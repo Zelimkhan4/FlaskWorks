@@ -1,5 +1,5 @@
 from data import db_session
-from flask import Flask, render_template, redirect
+from flask import Flask, jsonify, render_template, redirect, make_response
 from flask_login import LoginManager, logout_user
 from data.jobs import Jobs
 from data.users import User
@@ -7,11 +7,12 @@ from forms.login_form import LoginForm
 from flask_login import login_user, login_required, current_user
 from forms.add_jobs import AddJobsForm
 from forms.register import RegisterForm
+from data.news_api import bp
 
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "gdsfotyerer"
-
+app.config["JSON_AS_ASCII"] = False
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -92,11 +93,13 @@ def register():
     return render_template("register.html", form=form)
 
 
+@app.errorhandler(404)
+def not_found_handler(error):
+    res = jsonify({"error": error.get_description()})
+    return make_response(res, 404)
+
+    
 if __name__ == "__main__":
     db_session.global_init("db/blog.db")
-    # sess = db_session.create_session()
-    # user = sess.query(User).filter(User.email == "DartZelamh@mail.ru").first()
-    # user.name = "Zelimkhan"
-    # sess.add(user)
-    # sess.commit()
+    app.register_blueprint(bp)
     app.run()

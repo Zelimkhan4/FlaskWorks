@@ -18,3 +18,10 @@ class Jobs(SqlAlchemyBase):
                         nullable=True)
     is_finished = Column(Boolean, default=True)
     user = relationship("User")
+
+    def to_dict(self, columns=["id", "job"]):
+        data = {}
+        for column in columns:
+            data[column] = self.__getattribute__(column)
+        return data
+
